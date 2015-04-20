@@ -21,6 +21,7 @@ class UsersController extends AppController
      *
      * @return void
      */
+
     public function index()
     {
         $this->set('users', $this->paginate($this->Users));
@@ -117,5 +118,9 @@ class UsersController extends AppController
             }
             $this->Flash->error('Your username or password is incorrect.');
         }
+    }
+
+    public function dashboard() {
+
     }
 }
