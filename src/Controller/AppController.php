@@ -51,15 +51,13 @@ class AppController extends Controller
             'loginAction' => [
                 'controller' => 'Users',
                 'action' => 'login'
-<<<<<<< HEAD
+
             ],
-        	'logout' => [
-        			'controller' => 'Users',
-        			'action' => 'logout'
-        	]
-=======
+            'logout' => [
+                'controller' => 'Users',
+                'action' => 'logout'
             ]
->>>>>>> origin/master
+
         ]);
 
         $this->Auth->allow(['display']);
