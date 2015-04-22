@@ -122,6 +122,13 @@ class UsersController extends AppController
             $this->Flash->error('Your username or password is incorrect.');
         }
     }
+<<<<<<< HEAD
+    
+    public function logout(){
+    	return $this->redirect($this->Auth->logout());
+    }
+=======
+>>>>>>> origin/master
 
     public function dashboard() {
 
