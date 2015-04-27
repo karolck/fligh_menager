@@ -9,10 +9,12 @@
     <fieldset>
         <legend><?= __('Add Country') ?></legend>
         <?php
-            echo $this->Form->input('name');
-            echo $this->Form->input('iso');
+            echo $this->Form->input('name',['class' => 'form-control']);
+            echo $this->Form->input('iso',['class' => 'form-control']);
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+
+    <p></p>
+    <?= $this->Form->button(__('Submit'),['class' => 'btn btn-default']) ?>
     <?= $this->Form->end() ?>
 </div>
