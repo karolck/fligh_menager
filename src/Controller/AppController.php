@@ -61,5 +61,24 @@ class AppController extends Controller
         ]);
 
         $this->Auth->allow(['display']);
+
+        $this->set('menu',$this->getMenu());
+    }
+
+    protected function getMenu() {
+        return [
+            [
+                'controller' => 'Countries',
+                'action'     => 'index',
+                'name'       => __('Countries'),
+                'class'      => 'fa-dashboard'
+            ],
+            [
+                'controller' => 'Users',
+                'action'     => 'index',
+                'name'       => __('Users'),
+                'class'      => 'fa-dashboard'
+            ]
+        ];
     }
 }
