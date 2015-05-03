@@ -78,7 +78,13 @@ class AppController extends Controller
                 'action'     => 'index',
                 'name'       => __('Users'),
                 'class'      => 'fa-dashboard'
-            ]
+            ],
+        	[
+        		'controller' => 'Cities',
+        		'action'	 => 'index',
+        		'name'		 => __('Cities'),
+        		'class'		 => 'fa-dashboard' 
+        	],      
         ];
     }
 }

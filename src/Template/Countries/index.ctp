@@ -1,11 +1,10 @@
 <div class="actions columns large-2 medium-3">
-    <h3><?= __('Actions') ?></h3>
-    <ul class="side-nav">
-        <li><?= $this->Html->link(__('New Country'), ['action' => 'add']) ?></li>
-    </ul>
+    <h3 align = "center"><?= __('Country list') ?></h3>
+	<?= $this->Html->link(__('Add new Country'), ['action' => 'add'], ['class' => 'btn btn-default']) ?></li>
+	<br><br>
 </div>
 <div class="countries index large-10 medium-9 columns">
-    <table cellpadding="0" cellspacing="0">
+    <table cellpadding="20" cellspacing="0" border="1" align="center">
     <thead>
         <tr>
             <th><?= $this->Paginator->sort('id') ?></th>
@@ -25,9 +24,9 @@
             <td><?= h($country->created) ?></td>
             <td><?= h($country->updated) ?></td>
             <td class="actions">
-                <?= $this->Html->link(__('View'), ['action' => 'view', $country->id]) ?>
-                <?= $this->Html->link(__('Edit'), ['action' => 'edit', $country->id]) ?>
-                <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $country->id], ['confirm' => __('Are you sure you want to delete # {0}?', $country->id)]) ?>
+                <?= $this->Html->link(__('View'), ['action' => 'view', $country->id], ['class' => 'btn btn-default']) ?>
+                <?= $this->Html->link(__('Edit'), ['action' => 'edit', $country->id], ['class' => 'btn btn-default']) ?>
+                <?= $this->Form->postLink(__('Delete'), ['class' => 'btn btn-default'], ['action' => 'delete', $country->id], ['confirm' => __('Are you sure you want to delete # {0}?', $country->id)]) ?>
             </td>
         </tr>
 
