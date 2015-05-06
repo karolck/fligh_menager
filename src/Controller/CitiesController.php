@@ -17,7 +17,7 @@ class CitiesController extends AppController{
 	}
 	
 	public function add(){
-		$city = $this->City->newEntity();
+		$city = $this->Cities->newEntity();
 		
 		if ($this->request->is('post')) {
 			$city = $this->Cities->patchEntity($city, $this->request->data);
