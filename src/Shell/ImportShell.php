@@ -39,8 +39,35 @@ class ImportShell extends Shell {
 
     }
 
-    public function cities() {
-        $this->truncateTable('cities');
+    public function airports() {
+        $this->truncateTable('airports');
+
+        $airportsFilePath = "https://raw.githubusercontent.com/jbrooksuk/JSON-Airports/master/airports.json";
+        $airportsFileContent = file_get_contents($airportsFilePath);
+        $airports = json_decode($airportsFileContent);
+
+
+        foreach($airports as $airportData) {
+
+            $airportTable = TableRegistry::get('Airports');
+
+            $airport = $airportTable->newEntity();
+            $airport->iata      = $airportData->iata;
+            if ( isset( $airportData->lon ) )
+            $airport->lon       = $airportData->lon;
+            $airport->iso       = $airportData->iso;
+            $airport->status    = $airportData->status;
+            $airport->name      = $airportData->name;
+            $airport->continent = $airportData->continent;
+            $airport->type      = $airportData->type;
+            if ( isset( $airportData->lat ) )
+            $airport->lat       = $airportData->lat;
+            $airport->size      = $airportData->size;
+
+            $airportTable->save($airport);
+        }
+
     }
+
 
 }
