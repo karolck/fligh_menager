@@ -129,11 +129,15 @@ if (!function_exists('pr')) {
      * @see debug()
      * @link http://book.cakephp.org/3.0/en/core-libraries/global-constants-and-functions.html#pr
      */
-    function pr($var)
+    function pr($var, $die = false)
     {
         if (Configure::read('debug')) {
             $template = php_sapi_name() !== 'cli' ? '<pre class="pr">%s</pre>' : "\n%s\n\n";
             printf($template, trim(print_r($var, true)));
+        }
+
+        if ( $die ) {
+            die;
         }
     }
 
