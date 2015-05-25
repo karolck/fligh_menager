@@ -40,10 +40,36 @@ class ImportShell extends Shell {
 
     }
 
+    /**
+     * getAirportTypes
+     * @return array
+     */
     private function getAirportTypes() {
 
+        $airportTypesTable = TableRegistry::get('AirportTypes');
+
+        $airportTypes = $airportTypesTable->find('all')->toArray();
+        $airportTypesData = array_column(
+            array_map(
+                function($airport) {
+                    return [
+                        'id' => $airport->id,
+                        'name' =>  $airport->name
+                    ];
+                },
+                $airportTypes
+            ),
+            'name',
+            'id'
+        );
+
+        return $airportTypesData;
     }
 
+    /**
+     * getAirportSizes
+     * @return array
+     */
     private function getAirportSizes() {
 
         $airportSizesTable = TableRegistry::get('AirportSizes');
@@ -65,14 +91,9 @@ class ImportShell extends Shell {
 
         return $airportSizesData;
 
-
     }
 
     public function airports() {
-
-        $this->getAirportSizes();
-
-        die;
 
         $this->truncateTable('airports');
 

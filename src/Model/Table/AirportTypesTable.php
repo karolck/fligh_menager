@@ -5,14 +5,13 @@ use Cake\Orm\Table;
 use Cake\Orm\Query;
 use Cake\Orm\RulesChecker;
 
-class AirportSizesTable extends Table{
+class AirportTypesTable extends Table{
 	
 	public function initialize(Array $config)
 	{
-		$this->table('airport_sizes');
-		$this->displayField('iata');
+		$this->table('airport_types');
+		$this->displayField('name');
 		$this->primaryKey('id');
-		//$this->addBehavior('Timestamp');
 	}
 
 	
