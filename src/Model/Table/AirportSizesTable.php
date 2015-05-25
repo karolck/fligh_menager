@@ -14,15 +14,6 @@ class AirportSizesTable extends Table{
 		$this->primaryKey('id');
 		//$this->addBehavior('Timestamp');
 	}
-	
-//	public function validationDefault(Validator $validator){
-//		$validator
-//		->add('id', 'valid', ['rule' => 'numeric'])
-//		->allowEmpty('id', 'create')
-//		->allowEmpty('name')
-//		->allowEmpty('countryid');
-//
-//		return $validator;
-//	}
+
 	
 }
