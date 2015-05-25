@@ -3,6 +3,7 @@
 namespace App\Shell;
 
 use Cake\Console\Shell;
+use Cake\ORM\Table;
 use Cake\ORM\TableRegistry;
 use Cake\Datasource\ConnectionManager;
 
@@ -39,7 +40,40 @@ class ImportShell extends Shell {
 
     }
 
+    private function getAirportTypes() {
+
+    }
+
+    private function getAirportSizes() {
+
+        $airportSizesTable = TableRegistry::get('AirportSizes');
+
+        $airportSizes = $airportSizesTable->find('all')->toArray();
+        $airportSizesData = array_column(
+            array_map(
+                function($airport) {
+                    return [
+                        'id' => $airport->id,
+                        'name' =>  $airport->name
+                    ];
+                },
+                $airportSizes
+            ),
+            'name',
+            'id'
+        );
+
+        return $airportSizesData;
+
+
+    }
+
     public function airports() {
+
+        $this->getAirportSizes();
+
+        die;
+
         $this->truncateTable('airports');
 
         $airportsFilePath = "https://raw.githubusercontent.com/jbrooksuk/JSON-Airports/master/airports.json";
