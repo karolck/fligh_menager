@@ -4,7 +4,7 @@ CREATE TABLE `airports` (
   `lon` float DEFAULT NULL,
   `lat` float DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
-  `name` varchar(50) DEFAULT NULL,
+  `name` varchar(70) DEFAULT NULL,
   `continent` varchar(5) DEFAULT NULL,
   `type` varchar(20) DEFAULT NULL,
   `size` varchar(20) DEFAULT NULL,
