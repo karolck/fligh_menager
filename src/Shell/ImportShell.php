@@ -7,6 +7,8 @@ use Cake\ORM\Table;
 use Cake\ORM\TableRegistry;
 use Cake\Datasource\ConnectionManager;
 
+use App\Library\Api;
+
 class ImportShell extends Shell {
 
     private function truncateTable($table = 'countries'){
@@ -59,8 +61,8 @@ class ImportShell extends Shell {
                 },
                 $airportTypes
             ),
-            'name',
-            'id'
+            'id',
+            'name'
         );
 
         return $airportTypesData;
@@ -85,8 +87,8 @@ class ImportShell extends Shell {
                 },
                 $airportSizes
             ),
-            'name',
-            'id'
+            'id',
+            'name'
         );
 
         return $airportSizesData;
@@ -97,10 +99,12 @@ class ImportShell extends Shell {
 
         $this->truncateTable('airports');
 
+        $airportTypes = $this->getAirportTypes();
+        $airportSizes = $this->getAirportSizes();
+
         $airportsFilePath = "https://raw.githubusercontent.com/jbrooksuk/JSON-Airports/master/airports.json";
         $airportsFileContent = file_get_contents($airportsFilePath);
         $airports = json_decode($airportsFileContent);
-
 
         foreach($airports as $airportData) {
 
@@ -108,16 +112,18 @@ class ImportShell extends Shell {
 
             $airport = $airportTable->newEntity();
             $airport->iata      = $airportData->iata;
-            if ( isset( $airportData->lon ) )
-            $airport->lon       = $airportData->lon;
             $airport->iso       = $airportData->iso;
             $airport->status    = $airportData->status;
             $airport->name      = $airportData->name;
             $airport->continent = $airportData->continent;
-            $airport->type      = $airportData->type;
+            if ( isset( $airportTypes[$airportData->type] ) )
+            $airport->type      = $airportTypes[$airportData->type];
+            if ( isset( $airportSizes[$airportData->size] ) )
+            $airport->size      = $airportSizes[$airportData->size];
+            if ( isset( $airportData->lon ) )
+                $airport->lon       = $airportData->lon;
             if ( isset( $airportData->lat ) )
-            $airport->lat       = $airportData->lat;
-            $airport->size      = $airportData->size;
+                $airport->lat       = $airportData->lat;
 
             $airportTable->save($airport);
         }
